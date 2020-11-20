@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hospitalDB>
+<ip4>
+  "192.168.239.24"
+</ip4>
+<ip6>
+  "[2001:878:200:4102:207:e9ff:fe62:eed]"
+</ip6>
+<schemanames>
+  <schema>
+    logins
+  </schema>
+
+  <schema>
+    random
+  </schema>
+
+</schemanames>
+<credentials>
+  <username>
+  </username>
+</credentials>
+</hospitalDB>

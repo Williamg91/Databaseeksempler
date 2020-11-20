@@ -1,0 +1,20 @@
+
+
+
+
+
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE patient SYSTEM "patient.dtd">
+
+<patient>
+<oplysninger>
+  <oplysning>
+    <cpr></cpr>
+    <navn></navn>
+    <mail></mail>
+    <password></password>
+    <hospital></hospital>
+  </oplysning>
+  
+</oplysninger>
+</patient>

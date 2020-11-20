@@ -1,0 +1,10 @@
+<!ELEMENT artikler (artikel*)>    <!ELEMENT artikel (aid, titel, forfatter, synopse, indhold)>
+      <!ELEMENT aid (#PCDATA)>
+      <!ELEMENT titel (#PCDATA)>
+      <!ELEMENT forfatter (fid, navn, redaktoer)>
+         <!ELEMENT fid (#PCDATA)>
+         <!ELEMENT navn (#PCDATA)>
+         <!ELEMENT redaktoer (#PCDATA)>
+      <!ELEMENT synopse (#PCDATA)>
+      <!ELEMENT indhold (afsnit+)>
+         <!ELEMENT afsnit (#PCDATA)>

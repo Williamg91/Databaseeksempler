@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE artikler [
+        <!ELEMENT artikler (artikel*)>
+            <!ELEMENT artikel (aid, titel, forfatter, synopse, indhold)>
+            <!ELEMENT aid (#PCDATA)>
+            <!ELEMENT titel (#PCDATA)>
+            <!ELEMENT forfatter (fid, navn, redaktoer)>
+                <!ELEMENT fid (#PCDATA)>
+                <!ELEMENT navn (#PCDATA)>
+                <!ELEMENT redaktoer (#PCDATA)>
+        <!ELEMENT synopse (#PCDATA)>
+        <!ELEMENT indhold (afsnit+)>
+            <!ELEMENT afsnit (#PCDATA)>
+        ]>
+<artikler>
+
+
+</artikler>
