@@ -1,11 +1,14 @@
 import java.io.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.*;
 import java.util.StringTokenizer;
 
 public class opretbruger {
     static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
-  //  static String url = "jdbc:mariadb://192.168.239.24:3306/logins";
-    static String url = "jdbc:mariadb://[2001:878:200:4102:207:e9ff:fe62:eed]:3306/logins";
+    static String ip4 = "jdbc:mariadb://192.168.239.24:3306/logins";
+    static String ip6 = "jdbc:mariadb://[2001:878:200:4102:207:e9ff:fe62:eed]:3306/logins";
+    static String url="";
     String addresse = "jdbc:mariadb://[ip6]:3306/schemanavn";
     private static Connection conn = null;
     private static Statement statement = null;
@@ -13,6 +16,7 @@ public class opretbruger {
 
     static String inputfraCGI = null;
 
+    static String[] credentials;
 // here we use DBComm as a classname, if you use this method, make sure to change it to whatever class you use the
     // logger from
 
@@ -20,8 +24,22 @@ public class opretbruger {
     public static void main(String[] args) {
         showHead();
 
+        try {
+            if(InetAddress.getLocalHost().getHostName().contains("su")){
+                url = ip4;
+            }else{
+                url = ip6;
+                System.out.println("Remote host detected, from url:"+url);
+            }
 
-       String[] credentials= parseArgs(args);
+            try {
+                credentials= parseArgs(args);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
         try {
 
          //   System.out.println(data[0]);
@@ -56,14 +74,14 @@ public class opretbruger {
 
          //   System.out.println(mail);
            // System.out.println(password);
-
-
+String mail = credentials[0];
+            String password=credentials[1];
             insertUser(mail,password);
 
 
             //db.getHomeData();
         } catch (Exception   e) {
-            url = "jdbc:mariadb://192.168.239.24:3306/logins";
+           // ip4 = "jdbc:mariadb://192.168.239.24:3306/logins";
 
             StringWriter errors = new StringWriter();
             e.printStackTrace(new PrintWriter(errors));
@@ -82,13 +100,18 @@ public class opretbruger {
     }
 
     private static String[] parseArgs(String[] args) throws IOException {
+
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String[] data = { in.readLine() };
 
         inputfraCGI= data[0];
         String[] split = inputfraCGI.split("&");
+        //deler url op ?name=vaerdi&name=vaerdi2 i et array med 0 og 1 pladsen:
         String[] mailsplit = split[0].split("=",1);
+
         String[] passwordsplit = split[1].split("=",1);
+        //
+
         String password=passwordsplit[0].substring(passwordsplit[0].indexOf("=")+1,passwordsplit[0].length());
         String mail=mailsplit[0].substring(mailsplit[0].indexOf("=")+1,mailsplit[0].length());
 
