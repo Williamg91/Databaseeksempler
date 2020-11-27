@@ -3,9 +3,9 @@ import java.io.*;
 import java.sql.*;
 import java.util.StringTokenizer;
 
-public class CGIDBValidate {
+public class CreateUser {
     static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
-   // static String url = "jdbc:mariadb://192.168.239.24:3306/logins";
+    //static String url = "jdbc:mariadb://192.168.239.24:3306/logins";
     static String url = "jdbc:mariadb://[2001:878:200:4102:207:e9ff:fe62:eed]:3306/logins";
     String addresse = "jdbc:mariadb://[ip6]:3306/schemanavn";
     private static Connection conn = null;
@@ -23,12 +23,12 @@ public class CGIDBValidate {
 
 
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            String[] data = { in.readLine() };
+            //BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+           // String[] data = { in.readLine() };
 
-            inputfraCGI= data[0];
-         //   System.out.println(data[0]);
-           // showBody(new StringTokenizer(data[0],"&\n\r"));
+           // inputfraCGI= data[0];
+            //   System.out.println(data[0]);
+            // showBody(new StringTokenizer(data[0],"&\n\r"));
 
             Class.forName("org.mariadb.jdbc.Driver");
 
@@ -72,7 +72,7 @@ public class CGIDBValidate {
 
 
 //            showHead();
-  //          showBody();
+            //          showBody();
             //db.getHomeData();
         } catch (Exception   e) {
             StringWriter errors = new StringWriter();
@@ -111,10 +111,26 @@ public class CGIDBValidate {
         System.out.println("</BODY>\n</HTML>");
     }
 
-    private static String findUser(String mail,String Password){
-      String userCPR =null;
+    public static void createuser(String mail, String password) {
+        String sqlCreate = null;
+        //same as FIND user but creates one.
+        try{
 
-      String sqlFindUser = "select idloginoplysninger,cpr,mail from loginoplysninger where password ='" +Password+ "'and mail ='"+ mail +"';";
+
+
+        }catch(Exception e){
+        StringWriter errors = new StringWriter();
+        e.printStackTrace(new PrintWriter(errors));
+        String errstring = errors.toString();
+        System.out.println(errstring);
+        }
+
+
+    }
+    private static String findUser(String mail,String Password){
+        String userCPR =null;
+
+        String sqlFindUser = "select idloginoplysninger,cpr,mail from loginoplysninger where password ='" +Password+ "'and mail ='"+ mail +"';";
         try {
             ResultSet rs = statement.executeQuery(sqlFindUser);
             rs.next();

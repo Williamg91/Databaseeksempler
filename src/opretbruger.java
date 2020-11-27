@@ -1,11 +1,10 @@
-import javax.swing.*;
 import java.io.*;
 import java.sql.*;
 import java.util.StringTokenizer;
 
-public class CGIDBValidate {
+public class opretbruger {
     static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
-   // static String url = "jdbc:mariadb://192.168.239.24:3306/logins";
+  //  static String url = "jdbc:mariadb://192.168.239.24:3306/logins";
     static String url = "jdbc:mariadb://[2001:878:200:4102:207:e9ff:fe62:eed]:3306/logins";
     String addresse = "jdbc:mariadb://[ip6]:3306/schemanavn";
     private static Connection conn = null;
@@ -22,11 +21,9 @@ public class CGIDBValidate {
         showHead();
 
 
+       String[] credentials= parseArgs(args);
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            String[] data = { in.readLine() };
 
-            inputfraCGI= data[0];
          //   System.out.println(data[0]);
            // showBody(new StringTokenizer(data[0],"&\n\r"));
 
@@ -47,34 +44,27 @@ public class CGIDBValidate {
             conn = DriverManager.getConnection(url, user, pass);
             if (conn != null) {
 
-                System.out.println("<p> Im in </p>");
+
             } else {
                 System.out.println("<p> connection not made </p>");
             }
 
             //find out which columns are in current table:
-            statement = conn.createStatement();
-            String sql = "select * from loginoplysninger;";
-            ResultSet rs = statement.executeQuery(sql);
-            ResultSetMetaData rsMetaData = rs.getMetaData();
-            int numberOfColumns = rsMetaData.getColumnCount();
-
-            // get the column names; column indexes start from 1
-            for (int i = 1; i < numberOfColumns + 1; i++) {
-                String columnName = rsMetaData.getColumnName(i);
-                // Get the name of the column's table name
-                String tableName = rsMetaData.getTableName(i);
-                System.out.println("<p> column name:=" + columnName +"</p>");
-            }
-
-            //
-            String finduser = findUser("wilge@dtu.dk","henning");
 
 
-//            showHead();
-  //          showBody();
+
+
+         //   System.out.println(mail);
+           // System.out.println(password);
+
+
+            insertUser(mail,password);
+
+
             //db.getHomeData();
         } catch (Exception   e) {
+            url = "jdbc:mariadb://192.168.239.24:3306/logins";
+
             StringWriter errors = new StringWriter();
             e.printStackTrace(new PrintWriter(errors));
             String errstring = errors.toString();
@@ -83,9 +73,50 @@ public class CGIDBValidate {
         }
 
 
+
+
         showTail();
 
 
+
+    }
+
+    private static String[] parseArgs(String[] args) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String[] data = { in.readLine() };
+
+        inputfraCGI= data[0];
+        String[] split = inputfraCGI.split("&");
+        String[] mailsplit = split[0].split("=",1);
+        String[] passwordsplit = split[1].split("=",1);
+        String password=passwordsplit[0].substring(passwordsplit[0].indexOf("=")+1,passwordsplit[0].length());
+        String mail=mailsplit[0].substring(mailsplit[0].indexOf("=")+1,mailsplit[0].length());
+
+        String[] credentials= new String[2];
+        credentials[0] = mail;
+        credentials[1] =password;
+        return credentials;
+    }
+
+    private static void insertUser(String mail,String password){
+
+        try {
+            String SQLQuery = "insert into loginoplysninger(mail,password) values (?,?);";
+
+            PreparedStatement prep = conn.prepareStatement(SQLQuery);
+            prep.setString(1,mail);
+            prep.setString(2,password);
+            prep.executeUpdate();
+showSuccessMessage(mail,password);
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            StringWriter errors = new StringWriter();
+            throwables.printStackTrace(new PrintWriter(errors));
+            String errstring = errors.toString();
+            showError(errstring);
+        }
 
     }
 
@@ -101,6 +132,17 @@ public class CGIDBValidate {
         System.out.println("<META http-equiv=\"expires\" content=\"0\">");
         System.out.println("</HEAD>");
         System.out.println("<BODY>");
+
+    }
+
+    private static void showSuccessMessage(String mail, String password){
+
+        System.out.println("Success, created user with the mail:" +mail);
+
+    }
+
+    public static void showError(String error ) {
+        System.out.println(error);
 
     }
     private static void showBody(StringTokenizer stringTokenizer){

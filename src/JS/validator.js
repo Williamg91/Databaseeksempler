@@ -1,5 +1,7 @@
 function CheckPassword(inputtxt,mail)
 {
+
+    //simpelt bud til at validere password.
     var mail = mail.value();
     var passw=  /^[A-Za-z]\w{7,14}$/;
     if(inputtxt.value.match(passw))
