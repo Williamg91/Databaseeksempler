@@ -24,14 +24,17 @@ public class opretbruger {
     public static void main(String[] args) {
         showHead();
 
+
         try {
+
             if(InetAddress.getLocalHost().getHostName().contains("su")){
+               // System.out.println(InetAddress.getLocalHost().getHostName());
                 url = ip4;
             }else{
                 url = ip6;
                 System.out.println("Remote host detected, from url:"+url);
             }
-
+//java -cp ".:/usr/local/lib/java/mariadb-java-client-2.6.2.jar:" opretbruger
             try {
                 credentials= parseArgs(args);
             } catch (IOException e) {
@@ -67,13 +70,6 @@ public class opretbruger {
                 System.out.println("<p> connection not made </p>");
             }
 
-            //find out which columns are in current table:
-
-
-
-
-         //   System.out.println(mail);
-           // System.out.println(password);
 String mail = credentials[0];
             String password=credentials[1];
             insertUser(mail,password);
@@ -123,6 +119,8 @@ String mail = credentials[0];
 
     private static void insertUser(String mail,String password){
 
+        mail.replace("%40","@");
+                //replace %40 with @
         try {
             String SQLQuery = "insert into loginoplysninger(mail,password) values (?,?);";
 
