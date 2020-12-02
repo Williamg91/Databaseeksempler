@@ -70,6 +70,9 @@ public class ShowAppointments {
 
             //find out which columns are in current table:
             statement = conn.createStatement();
+
+
+
             showAppointments(findAppointments());
 
 
@@ -105,6 +108,7 @@ public class ShowAppointments {
                         "        <th>Tid</th>\n" +
                         "        <th>Afdeling</th>\n" +
                         "        <th> Hospital</th>\n" +
+                        " <th> AftaleID </th>"+
                         "        \n" +
                         "    </tr>\n" );
                         //stop med at printe tableheaders
@@ -119,13 +123,13 @@ public class ShowAppointments {
             for (String out: strings){
 //print contents of that row
                 System.out.println("<td>" + out+ "  </td>");
+
                 //System.out.println("<td>" + strings[1]+ " </td>");
                 //System.out.println("<td>" + "</td>");
                 // System.out.println("<td> </td>");
                 // System.out.println("<td> </td>");
-
-
             }
+
             System.out.println("</tr>");
         }
         System.out.println("</table>");
@@ -138,7 +142,7 @@ public class ShowAppointments {
         int id = 30;
         String findaftaler = "\n" +
                 "\n" +
-                "SELECT dato,time,afdeling,hospital,patientid FROM logins.appointments" +
+                "SELECT dato,tidspunkt,afdeling,hospital,ID FROM logins.appointments" +
                 " where patientid=" + id + ";";
 
         //https://theopentutorials.com/examples/java/util/date/how-to-convert-java-util-date-to-mysql-date-format/
@@ -149,11 +153,13 @@ public class ShowAppointments {
                 //for each row in the database
                 output.add(new String[]
                         //build a new string array for our ArrayList
+
                         {
                                 aftaler.getDate(1).toString(),
                                 aftaler.getTime(2).toString(),
-                                aftaler.getString(2).toString(),
                                 aftaler.getString(3).toString(),
+                                aftaler.getString(4).toString(),
+                                aftaler.getString(5)
                                 // aftaler.getInt("patientid")+""
 
                         });

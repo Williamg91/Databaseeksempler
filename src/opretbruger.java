@@ -70,8 +70,9 @@ public class opretbruger {
                 System.out.println("<p> connection not made </p>");
             }
 
-String mail = credentials[0];
+            String mail = credentials[0];
             String password=credentials[1];
+
             insertUser(mail,password);
 
 
@@ -97,16 +98,20 @@ String mail = credentials[0];
 
     private static String[] parseArgs(String[] args) throws IOException {
 
+        //POST method
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String[] data = { in.readLine() };
 
         inputfraCGI= data[0];
+
         String[] split = inputfraCGI.split("&");
+
         //deler url op ?name=vaerdi&name=vaerdi2 i et array med 0 og 1 pladsen:
         String[] mailsplit = split[0].split("=",1);
 
         String[] passwordsplit = split[1].split("=",1);
         //
+            //password=hejsahejejeje
 
         String password=passwordsplit[0].substring(passwordsplit[0].indexOf("=")+1,passwordsplit[0].length());
         String mail=mailsplit[0].substring(mailsplit[0].indexOf("=")+1,mailsplit[0].length());
@@ -124,10 +129,12 @@ String mail = credentials[0];
                 //replace %40 with @
         try {
             String SQLQuery = "insert into loginoplysninger(mail,password) values (?,?);";
+            String sqlaftale = "insert into appointments(dato,tidspunkt,afdeling,hospital) values (?,?,?,?);";
 
             PreparedStatement prep = conn.prepareStatement(SQLQuery);
             prep.setString(1,mail);
             prep.setString(2,password);
+
             prep.executeUpdate();
 showSuccessMessage(mail,password);
 
@@ -153,6 +160,7 @@ showSuccessMessage(mail,password);
         System.out.println("<META http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">");
         System.out.println("<META http-equiv=\"Pragma\" content=\"no-cache\">");
         System.out.println("<META http-equiv=\"expires\" content=\"0\">");
+
         System.out.println("</HEAD>");
         System.out.println("<BODY>");
 
