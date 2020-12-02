@@ -28,7 +28,7 @@ public class opretbruger {
         try {
 
             if(InetAddress.getLocalHost().getHostName().contains("su")){
-               // System.out.println(InetAddress.getLocalHost().getHostName());
+                // System.out.println(InetAddress.getLocalHost().getHostName());
                 url = ip4;
             }else{
                 url = ip6;
@@ -117,6 +117,7 @@ String mail = credentials[0];
         return credentials;
     }
 
+
     private static void insertUser(String mail,String password){
 
         mail.replace("%40","@");
@@ -136,6 +137,7 @@ showSuccessMessage(mail,password);
             StringWriter errors = new StringWriter();
             throwables.printStackTrace(new PrintWriter(errors));
             String errstring = errors.toString();
+
             showError(errstring);
         }
 
@@ -147,7 +149,7 @@ showSuccessMessage(mail,password);
         System.out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2//EN\">");
         System.out.println("<HTML>");
         System.out.println("<HEAD>");
-        System.out.println("<TITLE>Loginvalidation application</TITLE>");
+        System.out.println("<TITLE>user created!</TITLE>");
         System.out.println("<META http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">");
         System.out.println("<META http-equiv=\"Pragma\" content=\"no-cache\">");
         System.out.println("<META http-equiv=\"expires\" content=\"0\">");
@@ -163,6 +165,12 @@ showSuccessMessage(mail,password);
     }
 
     public static void showError(String error ) {
+        System.out.println("" +
+                "<script>\n" +
+                "function myFunction() {\n" +
+                "  alert(\" Fejl, bruger findes allerede\");\n" +
+                "}\n" +
+                "</script>");
         System.out.println(error);
 
     }
