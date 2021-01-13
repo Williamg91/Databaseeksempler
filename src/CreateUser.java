@@ -36,8 +36,8 @@ public class CreateUser {
 
             //mysql skal  ndres senere til MariaDB, localhost til en IPaddresse -
             String user, pass;
-            user = "william";
-            pass = "budgieboi";
+            user = "exchange";
+            pass = "helloGuest";
             // url="jdbc:mysql://localhost:3306/phoenixpoint?serverTimezone=Europe/Amsterdam&amp";
 
             // Skal man fx. bruge 127.0.0.1 til en remote maskine?
