@@ -53,7 +53,7 @@ public class CGIpost {
          String[] data = { in.readLine() };
 
          for(String i : data){
-            System.out.println(i);
+            //System.out.println(i);
          }
 
          showBody(new StringTokenizer(data[0],"&\n\r"));

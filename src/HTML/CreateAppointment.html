@@ -1,24 +1,39 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>VÃ¦lg en dato</title>
 
-    <script>
-        $('.datepicker').datepicker();
+    <META http-equiv=\"content-type\" content=\"text/html; charset=iso-8859-1\">"
+    <link rel="stylesheet" href="dtsel.css" />
+    <script src="dtsel.js"></script>
 
-    </script>
-
+    <title>V&aelig;lg en dato</title>
 
 
 </head>
 <body>
-<form action="index.html" method="get">
-    <input type="date" name ="aftaledato">
-    <input type="time" name="time">
 
+
+
+
+<form action="http://130.226.195.37:39084/cgi-bin/CreateAppointment" method="POST">
+    <label> Click on the icon to pick a date</label>
+    <br>
+    <input type="date" name="date">
+    <input type="time" name ="time">
+    <br>
+    <input type="submit" value="Bekræft">
+
+    <!--
+    <label> Click on the icon to pick a date</label>
+    <br>
+    <input type="datetime-local" name="dateandtime">
+    <br>
     <input type="submit" value="Confirm date">
-</div>
+    For simple, but only in Chrome browsers.
+    -->
+
 </form>
 
 </body>

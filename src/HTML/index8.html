@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hjem</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+</head>
+<body>
+
+
+<!-- Navigationen -->
+<nav class="w3-bar w3-blue">
+    <form action="index.html" method="get">
+        <a href="#home" class="w3-button w3-bar-item">Hjem</a> </form>
+
+    <a href="#login" class="w3-button w3-bar-item">Login</a>
+
+</nav>
+
+<form action="/cgi-bin/CGIget" method="get">
+    <label for="fname">Person-nummer</label><br>
+    <!-- https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip skal bruges til at lave tooltip-->
+
+
+    <input type="text" id="fname" name="fname"><br>
+    <label for="lname">Adgangskode</label><br>
+    <input type="password" id="lname" name="password"><br>
+    <button type="submit">Login</button>
+
+
+</form>
+
+
+
+</body>
+</html>

@@ -1,3 +1,5 @@
+package Database;
+
 import javax.swing.*;
 import java.io.*;
 import java.sql.*;
@@ -7,7 +9,8 @@ public class CGIDBValidate {
     static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
    // static String url = "jdbc:mariadb://192.168.239.24:3306/logins";
     static String url = "jdbc:mariadb://[2001:878:200:4102:207:e9ff:fe62:eed]:3306/logins";
-    String addresse = "jdbc:mariadb://[ip6]:3306/schemanavn";
+    static String remoteUrl= "jdbc:mariadb://130.226.19537:39024/logins";
+    String addressCGIDBValidatee = "jdbc:mariadb://[ip6]:3306/schemanavn";
     private static Connection conn = null;
     private static Statement statement = null;
     private PreparedStatement prep = null;
@@ -96,7 +99,7 @@ public class CGIDBValidate {
         System.out.println("<HTML>");
         System.out.println("<HEAD>");
         System.out.println("<TITLE>Loginvalidation application</TITLE>");
-        System.out.println("<META http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">");
+        System.out.println("<META http-equiv=\"content-type\" content=\"text/html; charset=iso-8859-1\">");
         System.out.println("<META http-equiv=\"Pragma\" content=\"no-cache\">");
         System.out.println("<META http-equiv=\"expires\" content=\"0\">");
         System.out.println("</HEAD>");

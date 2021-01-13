@@ -13,6 +13,7 @@ public class ShowAppointments {
     static String ip4 = "jdbc:mariadb://192.168.239.24:3306/logins";
     static String ip6 = "jdbc:mariadb://[2001:878:200:4102:207:e9ff:fe62:eed]:3306/logins";
     static String url="";
+    static String remoteUrl= "jdbc:mariadb://[130.226.195.37]:39024/logins";
     String addresse = "jdbc:mariadb://[ip6]:3306/schemanavn";
     private static Connection conn = null;
     private static Statement statement = null;
@@ -32,7 +33,8 @@ public class ShowAppointments {
                 // System.out.println(InetAddress.getLocalHost().getHostName());
                 url = ip4;
             }else{
-                url = ip6;
+                //url = ip6;
+                url = remoteUrl ;
                 System.out.println("Remote host detected, from url:"+url);
             }
         } catch (UnknownHostException e) {
