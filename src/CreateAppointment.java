@@ -27,7 +27,7 @@ public class CreateAppointment {
 
     //static String[] credentials;
 
-    //  UseDB database = new UseDB();
+
     public static void main(String[] args) {
 
         //bruger en GET metode, derfor  kan meget genbruges
@@ -53,8 +53,8 @@ public class CreateAppointment {
             //with the YY-MM-DD
             Time time =createTime(buffer[1]);
 
-            CreateJavaDate(buffer[0],buffer[1]);
-          // sendAppointment(time,date);
+           Date date1= CreateJavaDate(buffer[0],buffer[1]);
+           sendAppointment(date1,time,date);
 
           //  System.out.println("<p> +"+cookie+" </p>");
             //showSucces(values);
@@ -125,12 +125,14 @@ public class CreateAppointment {
 
         return out;
     }
-/*
-    private static void sendAppointment(Time time, java.sql.Date date){
-        database.insertAppointment(1,date,time);
+
+    private static void sendAppointment(Date javadate, Time time, java.sql.Date date){
+         UseDB database = new UseDB();
+
+        database.insertAppointment(1,date,time,javadate);
 
     }
-    */
+
 
 
     private static void showHead() {

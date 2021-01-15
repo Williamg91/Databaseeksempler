@@ -20,6 +20,8 @@ public class DatabaseConnection {
     private Connection conn = null;
     private static Statement statement = null;
     private PreparedStatement prep = null;
+
+
     public DatabaseConnection(){
 
         try{
@@ -27,6 +29,7 @@ public class DatabaseConnection {
             //int number = localhostname.charAt(localhostname.length()-1);
 //pseudocode to differentiate if we want a different target for connection.
             if(localhostname.contains("su")){
+
                 // System.out.println(InetAddress.getLocalHost().getHostName());
                 url = ip4;
             }else{

@@ -70,7 +70,7 @@ public class CreateUser {
             }
 
             //
-            String finduser = findUser("wilge@dtu.dk","henning");
+        //    String finduser = findUser("wilge@dtu.dk","henning");
 
 
 //            showHead();
@@ -136,39 +136,8 @@ static void showError(){
         System.out.println("</BODY>\n</HTML>");
     }
 
-    public static void createuser(String mail, String password) {
-        String sqlCreate = null;
-        //same as FIND user but creates one.
-        try{
-
-
-
-        }catch(Exception e){
-        StringWriter errors = new StringWriter();
-        e.printStackTrace(new PrintWriter(errors));
-        String errstring = errors.toString();
-        System.out.println(errstring);
-        }
 
 
     }
-    private static String findUser(String mail,String Password){
-        String userCPR =null;
 
-        String sqlFindUser = "select idloginoplysninger,cpr,mail from loginoplysninger where password ='" +Password+ "'and mail ='"+ mail +"';";
-        try {
-            ResultSet rs = statement.executeQuery(sqlFindUser);
-            rs.next();
-            int id = rs.getInt(1);
-            String cpr = rs.getString(2);
-            String email = rs.getString(3);
-            System.out.println("Id:"+id);
-            System.out.println("cpr:"+cpr);
-            System.out.println("mail:"+email);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return userCPR;
-    }
 }

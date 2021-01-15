@@ -142,51 +142,8 @@ public class ShowAppointments {
     private static ArrayList<String[]> findAppointments() {
         ArrayList output = new ArrayList();
         int id = 30;
-        String findaftaler = "\n" +
-                "\n" +
-                "SELECT dato,tidspunkt,afdeling,hospital,ID FROM logins.appointments" +
-                " where patientid=" + id + ";";
 
-        //https://theopentutorials.com/examples/java/util/date/how-to-convert-java-util-date-to-mysql-date-format/
-        //in case we want to show the
-        try {
-            ResultSet aftaler = statement.executeQuery(findaftaler);
-            while (aftaler.next()) {
-                //for each row in the database
-                output.add(new String[]
-                        //build a new string array for our ArrayList
-
-                        {
-                                aftaler.getDate(1).toString(),
-                                aftaler.getTime(2).toString(),
-                                aftaler.getString(3).toString(),
-                                aftaler.getString(4).toString(),
-                                aftaler.getString(5)
-                                // aftaler.getInt("patientid")+""
-
-                        });
-                //now we have built the data for each row, lets print it out as HTML
-                String HTML = "";
-
-                //we want something clever, to write out as many table data as we have fields returned
-                //for now we just will settle for the 5 colomns returned
-
-            }
-
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-
-        if (output != null) {
-            return output;
-        } else {
-            output.add(new String[]{"No patient found"});
-            return output;
-
-        }
-
+return output;
         //return output;
     }
 
@@ -248,23 +205,5 @@ public class ShowAppointments {
         System.out.println("</BODY>\n</HTML>");
     }
 
-    private static String findUser(String mail, String Password) {
-        String userCPR = null;
 
-        String sqlFindUser = "select idloginoplysninger,cpr,mail from loginoplysninger where password ='" + Password + "'and mail ='" + mail + "';";
-        try {
-            ResultSet rs = statement.executeQuery(sqlFindUser);
-            rs.next();
-            int id = rs.getInt(1);
-            String cpr = rs.getString(2);
-            String email = rs.getString(3);
-            System.out.println("Id:" + id);
-            System.out.println("cpr:" + cpr);
-            System.out.println("mail:" + email);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return userCPR;
-    }
 }
