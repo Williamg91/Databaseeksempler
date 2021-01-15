@@ -1,12 +1,8 @@
 
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+
 import java.net.InetAddress;
 import java.sql.*;
-import java.util.StringTokenizer;
 
 public class DatabaseConnection {
     static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
@@ -44,11 +40,12 @@ public class DatabaseConnection {
     public Connection getConn(String schema){
 
         try{
-            String samlet = "jdbc:mariadb://"+ip4+":3306/logins";
-            String localurl = "localhost:3306/phoenixpoint?serverTimezone=Europe/Amsterdam&amp";
+           // String samlet = "jdbc:mariadb://"+ip4+":3306/logins";
+          //  String localurl = "localhost:3306/phoenixpoint?serverTimezone=Europe/Amsterdam&amp";
 
             String IP6Maskine4 =  "jdbc:mariadb://[2001:878:200:4102:207:e9ff:fe62:eed]:3306/su4";
             String IP4Maskine4= "jdbc:mariadb://192.168.239.24:3306/su4";
+            // jdbc mariadb string + ip4 adresse / det schema man forbinder til.
             //bare for at tage noget, der virker.
            // Class.forName("org.mariadb.jdbc.Driver");
             Class.forName(JDBC_DRIVER);

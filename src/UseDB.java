@@ -12,19 +12,25 @@ public class UseDB {
     static Connection conn;
     //Statement statement = null;
     public static void main(String[] args) {
-        DatabaseConnection DBC = new DatabaseConnection();
-         conn = DBC.getConn("logins");
+       // DatabaseConnection DBC = new DatabaseConnection();
+         //conn = DBC.getConn("logins");
+
         if (conn!=null){
             System.out.println("im in");
         }
+        System.out.println("hejsa");
+
+        UseDB udb = new UseDB();
     }
+
     public UseDB(){
         DatabaseConnection DBC = new DatabaseConnection();
-
+        System.out.println("hej fra klassen"+this.getClass().toString());
         conn = DBC.getConn("logins");
 
 
     }
+
     public void deleteAppointment(int aftaleID){
 
         try{
@@ -44,10 +50,13 @@ public class UseDB {
     public ArrayList findUserAppointments(int id){
         //search according to the patientID OR CPR.
 ArrayList output = new ArrayList();
+
         String findaftaler = "\n" +
                 "\n" +
                 "SELECT dato,tidspunkt,afdeling,hospital,ID FROM su4.appointments" +
                 " where patientid=" + id + ";";
+
+        //SELECT ID,dato,tidspunkt,patientid FROM su4.appointments WHERE patientid=33;
 
         //https://theopentutorials.com/examples/java/util/date/how-to-convert-java-util-date-to-mysql-date-format/
         //in case we want to show the
@@ -65,13 +74,11 @@ ArrayList output = new ArrayList();
                                 aftaler.getString(4).toString(),
                                 aftaler.getString(5)
                                 // aftaler.getInt("patientid")+""
-
                         });
-                //now we have built the data for each row, lets print it out as HTML
-                String HTML = "";
-
+                //now we have built the data for each row, lets print it out as HTM
                 //we want something clever, to write out as many table data as we have fields returned
                 //for now we just will settle for the 5 columns returned
+                //call ShowAppointments
 
             }
 
